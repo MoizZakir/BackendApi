@@ -1,5 +1,5 @@
 import express from 'express'
-import dotenv from 'dotenv'
+// import dotenv from 'dotenv'
 import { authRouter } from './routes/authRoute.js'
 import { dbConnection } from './utils/config.js'
 import {userRouter} from './routes/user.js'
