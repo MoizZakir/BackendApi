@@ -111,7 +111,7 @@ const postTimlineController=async(req,res)=>{
                return await Post.find({userId:singleFreind})
             })
         )
-        res.status(200).json(freindsPost)
+        res.status(200).json(userPost.concat(...freindsPost))
         }
         catch(err){
             res.status(404).json('post not found')
