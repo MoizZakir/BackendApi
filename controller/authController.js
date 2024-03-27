@@ -21,11 +21,11 @@ const signupController=async(req,res)=>{
         const userCheck=await UsersSchemaCheck.save(UsersSchemaCheck)
         if(userCheck){
             console.log('data added')
-            res.json(userCheck)
+            res.json(true)
         }
         
     } catch (error) {
-        res.json(error.message)
+        res.json(false)
     }
 }
 
@@ -53,7 +53,8 @@ const validPassword =await bycrypt.compare(password,isUser.password)
                         else{
                             return res.json({
                                                 status:true,
-                                                message:"loginSuccefully"
+                                                message:"loginSuccefully",
+                                                data:isUser,
                                             }
                                             )
                         }

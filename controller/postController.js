@@ -111,7 +111,21 @@ const postTimlineController=async(req,res)=>{
                return await Post.find({userId:singleFreind})
             })
         )
-        res.status(200).json(freindsPost)
+        res.status(200).json(userPost.concat(...freindsPost))
+        }
+        catch(err){
+            res.status(404).json('post not found')
+        }
+}
+//get all userPost
+const userPostController=async(req,res)=>{
+
+
+    try{
+        const user= await Users.findOne({username:req.params.username})
+        const posts= await Post.find({userId:user._id})
+        res.status(200).json(posts)
+
         }
         catch(err){
             res.status(404).json('post not found')
@@ -119,6 +133,6 @@ const postTimlineController=async(req,res)=>{
 }
 
 export{
-    postCreateController,postUpdateController,postDeleteController,postLikeController,postGetController,postTimlineController
+    postCreateController,postUpdateController,postDeleteController,postLikeController,postGetController,postTimlineController,userPostController
 
 }

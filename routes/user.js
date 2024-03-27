@@ -8,7 +8,7 @@ const userRouter= express.Router()
 
 userRouter.put('/:id',userUpdateController)
 userRouter.delete('/:id',userDeleteController)
-userRouter.get('/:id',userGetController)
+userRouter.get('/',userGetController)
 userRouter.put('/:id/follow',userFollowController)
 userRouter.put('/:id/unfollow',userUnFollowController)
 
