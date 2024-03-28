@@ -127,8 +127,30 @@ const userUnFollowController=async(req,res)=>{
 }
 
 
+//get freind
+const userFreindHandler=async(req,res)=>{
+    try {
+        const user =await Users.findById(req.params.userId);
+        const freind=await Promise.all(
+            user.following?.map((e)=>{
+                return Users.findById(e)
+            })
+        )
+        let frindList=[]
+        freind.map((e)=>{
+            const {_id,username,profilePicture}=e
+            frindList.push( {_id,username,profilePicture})
+        })
+        res.status(200).json(frindList)
+        
+    } catch (error) {
+        res.status(500).json(error)
+        
+    }
+
+
+}
 
 
 
-
-export {userUpdateController,userDeleteController,userGetController,userFollowController,userUnFollowController}
+export {userUpdateController,userDeleteController,userGetController,userFollowController,userUnFollowController,userFreindHandler}
