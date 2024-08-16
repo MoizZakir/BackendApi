@@ -60,4 +60,4 @@ const UserSchema=new mongoose.Schema({
 },
 {timestamps:true})
 
-export default mongoose.model("users",UserSchema)
+export default mongoose.model("MediaUser",UserSchema)

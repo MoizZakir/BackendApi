@@ -25,7 +25,7 @@ const signupController=async(req,res)=>{
         }
         
     } catch (error) {
-        res.json(false)
+        res.json(error)
     }
 }
 

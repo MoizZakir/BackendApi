@@ -73,11 +73,11 @@ const postLikeController=async(req,res)=>{
     try{
     const findPost=await Post.findById(req.params.id)
     if(!findPost.likes.includes(req.body.userId)){
-        await Post.updateOne({$push:{likes:req.body.userId}})
+        await findPost.updateOne({$push:{likes:req.body.userId}})
         res.status(202).json('You liked the post')
     }
     else{
-        await Post.updateOne({$pull:{likes:req.body.userId}})
+        await findPost.updateOne({$pull:{likes:req.body.userId}})
         res.status(202).json('You disliked the post')
 
     }
