@@ -1,6 +1,22 @@
 import Users from "../model/user.js"
 import bycrypt from 'bcrypt'
 
+
+
+///get all  5 user
+
+const userGetAllController=async(req,res)=>{
+    try {
+        const user=await Users.find()
+        res.json(user)
+        
+    } catch (error) {
+        res.send(error)
+        
+    }
+
+}
+
 //update a user
 const userUpdateController= async (req,res)=>{
         if (req.body._id==req.params.id){
@@ -52,13 +68,15 @@ const userDeleteController=async (req,res)=>{
 const  userGetController= async (req,res)=>{
     const userId=req.query.userId
     const username=req.query.username
+    console.log('username===> ',username)
     
     try {
         const user= userId? await Users.findById(userId):await Users.findOne({username:username})
         const {password,updatedAt,...other}=user._doc
         res.status(200).json(other)
     } catch (error) {
-        res.status(400).json(error)
+        res.status(400).json(error);
+        console.log(error)
         
     }
 
@@ -153,4 +171,4 @@ const userFreindHandler=async(req,res)=>{
 
 
 
-export {userUpdateController,userDeleteController,userGetController,userFollowController,userUnFollowController,userFreindHandler}
+export {userUpdateController,userDeleteController,userGetController,userFollowController,userUnFollowController,userFreindHandler,userGetAllController}

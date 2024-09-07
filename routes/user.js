@@ -1,6 +1,6 @@
 import  express  from "express";
 import user from "../model/user.js";
-import { userDeleteController, userFollowController, userFreindHandler, userGetController, userUnFollowController, userUpdateController } from "../controller/userController.js";
+import { userDeleteController, userFollowController, userFreindHandler, userGetAllController, userGetController, userUnFollowController, userUpdateController } from "../controller/userController.js";
 const userRouter= express.Router()
 
 
@@ -12,6 +12,7 @@ userRouter.put('/:id/follow',userFollowController)
 userRouter.put('/:id/unfollow',userUnFollowController)
 userRouter.get('/',userGetController)
 userRouter.get('/freinds/:userId',userFreindHandler)
+userRouter.get('/all',userGetAllController)
 
 
 export { userRouter}
