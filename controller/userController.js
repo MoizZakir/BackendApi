@@ -73,9 +73,9 @@ const  userGetController= async (req,res)=>{
     try {
         const user= userId? await Users.findById(userId):await Users.findOne({username:username})
         const {password,updatedAt,...other}=user._doc
-        res.status(200).json(other)
+        res.status(200).json({...other,status:true})
     } catch (error) {
-        res.status(400).json(error);
+        res.status(200).json({status:false,message:'No user found'});
         console.log(error)
         
     }

@@ -46,11 +46,13 @@ const UserSchema=new mongoose.Schema({
     }
     ,city:{
       type:String,
-      max:50
+      max:50,
+      default:'no city'
     },
     from:{
       type:String,
-      max:50
+      max:50,
+      default:'no country'
     },
     relationShip:{
       type:Number,

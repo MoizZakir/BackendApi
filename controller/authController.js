@@ -5,11 +5,19 @@ const signupController=async(req,res)=>{
 
     try {
         //set new Password
+        const userData= req.body
+        const  isUserAvailable=await UserSchema.find({username: userData.username,
+            email:userData.email})
+        if(isUserAvailable){
+            return res.status(500).json({
+                status:false,
+                message:'Username or Email already Taken'}
+            )
+        }
         const salt = await  bycrypt.genSalt(10)
         const hashedPassword= await bycrypt.hash(req.body.password,salt)
 
         //create user
-        const userData= req.body
         const UsersSchemaCheck=await new UserSchema({
            username: userData.username,
            email:userData.email,
