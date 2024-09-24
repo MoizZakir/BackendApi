@@ -6,9 +6,11 @@ const signupController=async(req,res)=>{
     try {
         //set new Password
         const userData= req.body
+        
         const  isUserAvailable=await UserSchema.find({username: userData.username,
             email:userData.email})
-        if(isUserAvailable){
+            console.log(isUserAvailable)
+        if(isUserAvailable?.length>0){
             return res.status(500).json({
                 status:false,
                 message:'Username or Email already Taken'}
